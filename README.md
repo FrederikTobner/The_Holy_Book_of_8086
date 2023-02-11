@@ -1,6 +1,6 @@
 # Boot sector games
 
-Programs written for 8086/8088 in assembly language, that could be located in the boot-sector of an IBM-compatible environment.
+Programs written for 8086 in assembly language, that could be located in the boot-sector of an IBM-compatible environment.
 The boot sector can hold up to 510 bytes. The project is based on the book Programming boot sector games by Oscar Toledo G.
 
 ## Setup
@@ -32,7 +32,11 @@ C:
 
 #### The Bus interface unit (BIU)
 
-The BIU provides the 8086 with acces to external memory and I/O devices.
+The BIU provides the 8086 with acces to external memory and I/O devices and with a 6 Byte prefetch queue. This is because the biggest instruction that the microprocessor can process has a size of 6 Bytes.
+
+#### Control Unit
+
+The Control unit decodes the instructions stored in the pre-fetch-Queue.
 
 #### Execution Unit
 

@@ -1,18 +1,18 @@
 ;
-; fbird.asm
+; flappybird.asm
 ;
 
 use16
 cpu 8086
 org 0x0100
 
-pipe:    equ 0x0fa0
-score:    equ 0x0fa2
-grav:    equ 0x0fa4
-next:    equ 0x0fa6
-bird:    equ 0x0fa8
-tail:    equ 0x0faa
-frame:    equ 0x0fac
+pipe:       equ 0x0fa0
+score:      equ 0x0fa2
+grav:       equ 0x0fa4
+next:       equ 0x0fa6
+bird:       equ 0x0fa8
+tail:       equ 0x0faa
+frame:      equ 0x0fac
 
     mov ax, 0x0002              ; 80x25 text mode
     int 0x10                    ; Call BIOS
