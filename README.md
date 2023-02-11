@@ -28,7 +28,7 @@ C:
 
 ### Architecture
 
-![Architecture](./images/example.png)
+![Architecture](./images/8086Architecture.png)
 
 #### The Bus interface unit (BIU)
 
