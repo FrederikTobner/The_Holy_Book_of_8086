@@ -1,6 +1,6 @@
 # Boot sector games
 
-Games written for 8086/8088 in assembly language.
+Programs written for 8086/8088 in assembly language.
 
 ## Setup
 
