@@ -26,7 +26,17 @@ C:
 
 ## 8086
 
-### Insruction set
+### Architecture
+
+![Architecture](./images/example.png)
+
+#### The Bus interface unit (BIU)
+
+The BIU provides the 8086 with acces to external memory and I/O devices.
+
+#### Execution Unit
+
+### Instruction set
 
 #### Arithmetic instructions
 
@@ -36,10 +46,7 @@ C:
 | ADD    | ADD A, B | Computes A + B and stores the result in A                      |
 | ADC    | ADC A, B | Computes A + B + the prevoius carry and stores the result in A |
 
-
 #### Logical instructions
-
-### Registers
 
 ### Interrupts
 
@@ -53,6 +60,7 @@ The memory of computer is divided into four segments:
 * Stack segment (SS)
 
 For each of these segments a special purpose register, that stores the base address (address of the start of the segment) of the segment, is provided.
+These registers are part of the BUI of the processor.
 
 ### Flags
 
@@ -73,7 +81,6 @@ For each of these segments a special purpose register, that stores the base addr
 | I (Interrupt Flag)        | Set if the result of an arithmetic operation is negative                                                                      |
 | T (Trap Flag)             | Used for on-chip-debugging. Setting the flag puts the 8086 into single step mode                                              |
 
-
 ## Resources
 
 ### English
@@ -83,4 +90,5 @@ For each of these segments a special purpose register, that stores the base addr
 ### German
 
 [8086/8088 Reference](https://www.i8086.de/)
+
 [8086 Handbook (German)](https://www.pearson.ch/download/media/9783827320148_SP.pdf)

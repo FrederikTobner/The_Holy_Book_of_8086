@@ -10,15 +10,15 @@ start:
     mov cx, table_size
     mov al, 0
 pl:
-    mov [bx], al
-    inc bx
-    loop pl
-    mov ax, 2
+    mov [bx], al            ; write AL into adress pointed to by bx
+    inc bx                  ; increment bx
+    loop pl                 ; loop back to p1 if non-zero
+    mov ax, 2               ; Store 2 in register AX
 p2: 
-    mov bx, table
-    add bx, ax
-    cmp byte [bx], 0
-    jne p3
+    mov bx, table           ; Store table adress in Register BX
+    add bx, ax              ; BX += AX
+    cmp byte [bx], 0        ; Is it a prime number?
+    jne p3                  ; 
     push ax
     call display_number
     mov al, 0x2c
