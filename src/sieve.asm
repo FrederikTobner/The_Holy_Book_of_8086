@@ -18,7 +18,7 @@ p2:
     mov bx, table           ; Store table adress in Register BX
     add bx, ax              ; BX += AX
     cmp byte [bx], 0        ; Is it a prime number?
-    jne p3                  ; 
+    jne p3                  ; If not jump tp p3
     push ax
     call display_number
     mov al, 0x2c

@@ -5,30 +5,29 @@ org 0x0100
 
 board:      equ 0x0300      ; Board is stored at memory location 0x0300
 
-
 start:
     mov bx, board           ; Stores the memory adress where the board is located in the register bx
-    mov cx, 9           
-    mov al, '1'
-init:                        ; Initializes the board
+    mov cx, 9               ; Count 9 squares
+    mov al, '1'             ; ASCII value representing the first square
+init:                       ; Initializes the board
     mov [bx], al            ; 0x0300: 0x31, 0x32, ..., 0x39
-    inc al
-    inc bx
-    loop init
+    inc al                  ; Increment AL
+    inc bx                  ; Increment BX
+    loop init               ; Jmp back to init
 game_loop:
-    call show_board
-    call find_line
+    call show_board         ; Show the game board
+    call find_line          ; Check for win condition
 
-    call get_movement
+    call get_movement       ; Get input from player playing as 'X'
     mov byte [bx], 'X'
 
-    call show_board
-    call find_line
+    call show_board         ; Show the game board
+    call find_line          ; Check for win condition
 
-    call get_movement
+    call get_movement       ; Get input from player playing as 'O'
     mov byte [bx], 'O'
 
-    jmp game_loop
+    jmp game_loop           ; Loop back to the beginning
 
 get_movement:
     call read_key
@@ -47,7 +46,7 @@ get_movement:
     call new_line
     ret
 
-end:
+end:                        ; Ends the program execution
     int 0x20
 
 ; Shows the complete board
@@ -88,7 +87,7 @@ show_div:
     call new_line
     ret
 
-; Dsiplays a single square
+; Displays a single square
 show_square:
     mov al, [bx]
     inc bx
@@ -97,68 +96,60 @@ show_square:
 
 ; Looks for a win condition
 find_line:
-    ; first horizontal line
+check_horizontal1:
     mov al, [board]
     cmp al, [board+1]
-    jne b01
+    jne check_vertical1
     cmp al, [board+2]
     je won
-b01:
-    ; leftmost vertical row
+check_vertical1:
     cmp al, [board+3]
-    jne b04
+    jne check_diagonal1
     cmp al, [board+6]
     je won
-b04:
-    ; first diagonal
+check_diagonal1:
     cmp al, [board+4]
-    jne b05
+    jne check_horizontal2
     cmp al, [board+8]
     je won
-b05:
-    ; second horizontal
+check_horizontal2:
     mov al, [board+3]
     cmp al, [board+4]
-    jne b02
+    jne check_horizontal3
     cmp al, [board+5]
     je won
-b02:
-    ; third horizontal
+check_horizontal3:
     mov al, [board+6]
     cmp al, [board+7]
-    jne b03
+    jne check_vertical2
     cmp al, [board+8]
     je won
-b03:
-    ; second vertical
+check_vertical2:
     mov al, [board+1]
     cmp al, [board+4]
-    jne b06
+    jne check_vertical3
     cmp al, [board+7]
     je won
-b06:
-    ; rightmost vertical
+check_vertical3:
     mov al, [board+2]
     cmp al, [board+5]
-    jne b07
+    jne check_diagonal2
     cmp al, [board+8]
     je won
-b07:
-    ; second diagonal
+check_diagonal2:
     cmp al, [board+4]
-    jne b08
+    jne end_check
     cmp al, [board+6]
     je won
-b08:
+end_check:
     ret
-won:
-    ; at this point, AL contains the letter which made the line
+won:                        ; at this point, AL contains the letter which made the line    
     call display_letter
     mov bx, message
     call display_string
     int 0x20                ; exit to command line
 
-message:
+message:                    ; message that is displayed when a player has won the game
     db " won!", 0
 
 %include "../src/library.asm"

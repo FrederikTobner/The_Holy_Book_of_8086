@@ -65,8 +65,7 @@ wait_for_input:
     popf
     jnz wait_for_input
 
-; main loop
-game_loop:
+game_loop:                      ; main game loop
     mov al, [bird]
     add al, [grav]
     mov [bird], al
@@ -286,5 +285,5 @@ fb14:
     and al, 0xfc                ; turn off sound
     out (0x61), al
     ret
-end:
+end:                            ; Stops the program execution
     int 0x20

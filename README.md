@@ -1,6 +1,6 @@
-# Boot sector games
+# 8086 Programming
 
-Programs written for 8086 in assembly language, that could be located in the boot-sector of an IBM-compatible environment.
+Programs written for the 8086 architecture in assembly language, that could be located in the boot-sector of an IBM-compatible environment.
 The boot sector can hold up to 510 bytes. The project is based on the book Programming boot sector games by Oscar Toledo G.
 
 ## Setup
@@ -39,6 +39,8 @@ The BIU provides the 8086 with acces to external memory and I/O devices and with
 The Control unit decodes the instructions stored in the pre-fetch-Queue.
 
 #### Execution Unit
+
+The execution unit contains the general purpose registers AX, BX, CX and DX.
 
 ### Instruction set
 
