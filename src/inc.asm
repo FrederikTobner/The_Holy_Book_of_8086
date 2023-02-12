@@ -15,6 +15,6 @@ count2:
     cmp al, 0x30
     jne count2
 
-    int 0x20                ; exit
+    int 0x20                    ; exit
 
 %include "../src/library.asm"

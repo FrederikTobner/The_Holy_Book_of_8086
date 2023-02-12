@@ -4,45 +4,45 @@
 
 org 0x0100
 
-    mov ax, 0x0002          ; 80x25, 16 color mode
+    mov ax, 0x0002              ; 80x25, 16 color mode
     int 0x10
 
     mov ax, 0xb800
     mov ds, ax
     mov es, ax
 
-    cld                     ; clear DI/SI direction
+    cld                         ; clear DI/SI direction
 
 main_loop:
     mov ah, 0x00
-    int 0x1a                ; read clock
+    int 0x1a                    ; read clock
     mov al, dl
-    test al, 0x40           ; bit 6 is 1?
+    test al, 0x40               ; bit 6 is 1?
     je m2
     not al
 m2:
-    and al, 0x3f            ; separate lower 6 bits
-    sub al, 0x20            ; make it -32 to 31
-    cbw                     ; extend AL to AX
+    and al, 0x3f                ; separate lower 6 bits
+    sub al, 0x20                ; make it -32 to 31
+    cbw                         ; extend AL to AX
     mov cx, ax
 
     mov di, 0x0000
-    mov dh, 0               ; row
+    mov dh, 0                   ; row
 m0:
-    mov dl, 0               ; column
+    mov dl, 0                   ; column
 m1:
     push dx
     mov bx, sin_table
 
-    mov al, dh              ; take the row
-    shl al, 1               ; 2x because of aspect ratio
-    and al, 0x3f            ; Make it 0-63
-    cs xlat                 ; extract sin value (mov al, [bx+al])
+    mov al, dh                  ; take the row
+    shl al, 1                   ; 2x because of aspect ratio
+    and al, 0x3f                ; Make it 0-63
+    cs xlat                     ; extract sin value (mov al, [bx+al])
     cbw
     push ax
 
-    mov al, dl              ; take the column
-    and al, 0x3f            ; Mkae it 0-63
+    mov al, dl                  ; take the column
+    and al, 0x3f                ; Mkae it 0-63
     cs xlat
     cbw
     pop dx
