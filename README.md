@@ -1,4 +1,4 @@
-# 8086 Programming
+# The Holy Book of 8086
 
 Programs written for the 8086 architecture in assembly language, that could be located in the boot-sector of an IBM-compatible environment.
 The boot sector can hold up to 510 bytes. The project is based on the book Programming boot sector games by Oscar Toledo G.
@@ -46,11 +46,26 @@ The execution unit contains the general purpose registers AX, BX, CX and DX.
 
 #### Arithmetic instructions
 
-| Opcode | Usage    | Description                                                    |
-|--------|----------|----------------------------------------------------------------|
-| AAD    | AAD      | Adjust accumulator after division                              |
-| ADD    | ADD A, B | Computes A + B and stores the result in A                      |
-| ADC    | ADC A, B | Computes A + B + the prevoius carry and stores the result in A |
+| Opcode | Usage    | Description                                                                         |
+|--------|----------|-------------------------------------------------------------------------------------|
+| AAA    | AAA      | Adjust accumulator after addition                                                   |
+| AAD    | AAD      | Adjust accumulator after division                                                   |
+| AAM    | AAM      | Adjust accumulator after multipliction                                              |
+| AAS    | AAS      | Adjust accumulator after subtration                                                 |
+| ADC    | ADC A, B | Computes A + B + the prevoius carry and stores the result in A                      |
+| ADD    | ADD A, B | Computes A + B and stores the result in A                                           |
+| CBW    | CBW      | converts signed byte to word                                                        |
+| CWD    | CWD      | converts signed byte to double word                                                 |
+| DAA    | DAA      | decimal adjust accumulator                                                          |
+| DAS    | DAS      | decimal adjust accumulator after subtraction                                        |
+| DEC    | DEC A    | Decrements the value in the specified register by one                               |
+| DIV    | DIV X    | Computes AX / X and stores the result in AX and the remainder in DX                 |
+| DIV    | DIV X    | Computes signed division AX / X and stores the result in AX and the remainder in DX |
+| INC    | INC A    | Increments the value in the specified register by one                               |
+| MUL    | MUL X    | Computes AX * X and stores the result in AX                                         |
+| NEG    | NEG X    | Negates / stores the 2's complement of the register value in the register           |
+| SBB    | SBB A, B | Computes A - B - the prevoius carry and stores the result in A                      |
+| SUB    | SUB A, B | Computes A - B and stores the result in A                                           |
 
 #### Logical instructions
 
@@ -74,9 +89,9 @@ These registers are part of the BUI of the processor.
 |---------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | CF (Carry Flag)           | Signals an overflow after a arithmetic operation                                                                              |
 | SF (Sign Flag)            | Set if the result of an arithmetic operation is negative                                                                      |
-| ZF (Zero Flag)            | Signals an overflow after a arithmetic operation                                                                              |
-| AC (Auxiliary Carry flag) | Signals an overflow after a arithmetic operation                                                                              |
-| PF (Parity flag)          | Signals an overflow after a arithmetic operation                                                                              |
+| ZF (Zero Flag)            | After any arithmetical or logical operation if the result is 0 (00)H, the zero flag becomes set                               |
+| AC (Auxiliary Carry flag) | This flag is used in the BCD number system                                                                                    |
+| PF (Parity flag)          | If the result of an arithmetic or logical operation has even parity this flag is set                                          |
 | O (Overflow flag)         | This flag will be set if the result of a signed operation is too large to fit in the number of bits available to represent it |
 
 #### Control Flags
