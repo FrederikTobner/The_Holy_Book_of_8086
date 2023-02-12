@@ -1,8 +1,8 @@
 ;
 ; hello.asm
 ;
-    org 0x0100
-
+org 0x0100
+start:
     mov ax, 0x0002          ; AH 0x00 Set color mode, AL 0x02  80x25x16 text (16 bit color mode)
     int 0x10                ; Set color mode with value in AX
 

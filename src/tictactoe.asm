@@ -152,4 +152,5 @@ won:                        ; at this point, AL contains the letter which made t
 message:                    ; message that is displayed when a player has won the game
     db " won!", 0
 
+; Include 8086 libary
 %include "../src/library.asm"

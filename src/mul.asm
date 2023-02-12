@@ -10,4 +10,5 @@ start:
     call display_letter
     int 0x20                ; exit
 
+; Include 8086 libary
 %include "../src/library.asm"

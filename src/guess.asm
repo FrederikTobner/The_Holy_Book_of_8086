@@ -22,4 +22,5 @@ game_loop:
 
     int 0x20                ; exit
 
+; Include 8086 libary
 %include "../src/library.asm"
