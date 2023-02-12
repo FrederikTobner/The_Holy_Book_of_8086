@@ -25,7 +25,7 @@ frame:      equ 0x0fac
 new_game:
     ; F - Bird
     mov di, pipe                    ; Init variables in video segment
-    xor ax, ax
+    xor ax, ax                      ; Set AX to 0
     stosw                           ; pipe
     stosw                           ; score
     stosw                           ; grav

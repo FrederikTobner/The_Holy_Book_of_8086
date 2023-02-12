@@ -1,6 +1,6 @@
 # The Holy Book of 8086
 
-Programs written for the 8086 architecture in assembly language. The project is based on the book Programming boot sector games by Oscar Toledo G.
+Programs written for the 8086 microprocessor in assembly language using nasm. The project is based on the book Programming boot sector games by Oscar Toledo G.
 More information about the 8086 architecture can be found at the [wiki](https://github.com/FrederikTobner/The_Holy_Book_of_8086/wiki).
 
 ## Setup
