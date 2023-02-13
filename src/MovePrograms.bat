@@ -7,4 +7,4 @@ cd ..\build\
 for /f "delims=" %%i in ('dir /b /a-d *.com') do (
 copy  %%i "%folder%"
 )
-cd ..\scripts
+cd ..\src
