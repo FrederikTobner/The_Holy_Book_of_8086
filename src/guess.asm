@@ -14,8 +14,9 @@ game_loop:
     cmp al, cl                  ; Compare input with secret number
     jne game_loop               ; If the numbers where not equal jump keep asking for input
     call display_letter         ; Display number
+    ; Display Happy face
     mov al, 0x3a
-    call display_letter         ; Display Happy face
+    call display_letter         
     mov al, 0x29
     call display_letter
 

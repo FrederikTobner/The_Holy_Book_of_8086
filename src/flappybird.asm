@@ -17,39 +17,40 @@ frame:      equ 0x0fac
     mov ax, 0x0002                  ; 80x25 text mode
     int 0x10                        ; Call BIOS
     cld                             ; reset direction flag
-    mov ax, 0xb800                  ; point to vram
+    mov ax, 0xb800                  ; point AX to vram
     mov ds, ax                      ; store content of AX in the data segment register
     mov es, ax                      ; Store the content of AX in the extra segment register
 
-; game
+; Starts a new game
 new_game:
-    ; F - Bird
     mov di, pipe                    ; Init variables in video segment
     xor ax, ax                      ; Set AX to 0
-    stosw                           ; pipe
-    stosw                           ; score
-    stosw                           ; grav
+    stosw 
+    stosw
+    stosw         
     mov al, 0xa0
-    stosw                           ; next
+    stosw
     mov al, 0x60
-    stosw                           ; bird
-
-    mov di, 0x004a                  ; game title
+    stosw
+    ;
+    ; Show game title
+    ;
+    mov di, 0x004a                  
     mov ax, 0x0f46                  ; F in white
     stosw
     mov al, '-'
     stosw
-    mov al, 'B'
+    mov al, 'B'                     ; B in white
     stosw
-    mov al, 'I'
+    mov al, 'I'                     ; I in white
     stosw
-    mov al, 'R'
+    mov al, 'R'                     ; R in white
     stosw
-    mov al, 'D'
+    mov al, 'D'                     ; D in white
     stosw
 
     mov cx, 80                      ; Introduce 80 columns of scenery
-scroll:
+scroll:                             ; scroll screen
     push cx
     call scroll_scenery
     pop cx
@@ -118,13 +119,13 @@ fb16:
     mov cx, 100
 fb20:
     push cx
-    call wait_frame
+    call wait_for_frame
     pop cx
     loop fb20
     jmp new_game                    ; restart
 fb19:
     ; per frame
-    call wait_frame
+    call wait_for_frame
     mov al, [frame]
     test al, 7
     jnz clear_bird
@@ -163,7 +164,7 @@ fb25:
 fb24:
     mov ah, 0x01
     int 0x16                        ; key buffer check
-    jz fb26                         ; if nothing is in buffer
+    jz jump_to_main_loop            ; if nothing is in the buffer jump to the main loop
     mov ah, 0x00
     int 0x16                        ; read key
     cmp al, 0x1b                    ; ESC key?
@@ -187,7 +188,7 @@ fb18:
     in al, (0x61)
     or al, 0x03                     ; turn on sound
     out (0x61), al
-fb26:
+jump_to_main_loop:
     jmp game_loop                   ; jump to main loop
 scroll_scenery:
     mov si, 0x00a2                  ; 162. row 1, column 1
@@ -220,7 +221,7 @@ fb5:
     dec word [next]
     mov bx, [next]
     cmp bx, 0x03
-    ja fb6
+    ja return_from_subroutine
     jne fb8
     in al, (0x40)
     and ax, 0x0007
@@ -256,7 +257,7 @@ fb10:
     cmp di, 0x0f00
     jb fb10
     or bx, bx
-    jnz fb6
+    jnz return_from_subroutine
     mov ax, [pipe]
     inc ax
     mov [pipe], ax
@@ -269,18 +270,18 @@ fb10:
     mov ah, 0x10
 fb11:
     mov [next], ah
-fb6:
+return_from_subroutine:
     ret
-wait_frame:                         ; 18.2hz
+wait_for_frame:                     ; 18.2hz
     mov ah, 0x00
     int 0x1a                        ; get system clock (18.2hz) in CX:DX
-fb14:
+still_waiting_for_frame:
     push dx                         ; save DX (clock)
     mov ah, 0x00
     int 0x1a                        ; get system clock again
     pop bx
     cmp bx, dx                      ; compare until it changes
-    jz fb14
+    jz still_waiting_for_frame
     inc word [frame]                ; increase frame
     in al, (0x61)
     and al, 0xfc                    ; turn off sound

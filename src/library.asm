@@ -53,9 +53,9 @@ display_number:
     div cx
     push dx
     cmp ax, 0
-    je display_number_1
+    je display_single_digit
     call display_number
-display_number_1:
+display_single_digit:
     pop ax
     add al, '0'
     call display_letter
@@ -81,12 +81,12 @@ change_display_mode:
 display_string:
     mov al, [bx]
     test al, al            ; test if al is zero
-    jz return
+    jz return_from_display_string
     push bx
     call display_letter
     pop bx
     inc bx
     jmp display_string
-return:
+return_from_display_string:
     ret
     
