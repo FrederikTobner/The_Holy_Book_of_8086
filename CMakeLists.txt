@@ -5,7 +5,7 @@ find_program(NASM_EXECUTABLE nasm REQUIRED)
 
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 set(LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
-set(LIBRARY_ASM ${LIB_DIR}/library.asm)
+set(LIBRARY_ASM ${LIB_DIR}/io.asm)
 set(PROGRAM_OUTPUT_DIR ${CMAKE_BINARY_DIR}/bin)
 
 # Directory the "move" target copies the assembled .com files into, e.g. a DOSBox mount folder.
