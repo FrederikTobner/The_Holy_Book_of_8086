@@ -24,7 +24,7 @@ jobs:
         run: choco install nasm ninja -y
 
       - name: Configure
-        run: cmake --preset ninja
+        run: cmake -B build -G Ninja 
 
       - name: Build all programs
-        run: cmake --build --preset ninja
+        run: cmake --build build

@@ -16,18 +16,21 @@ loop:
     xor ah, ah                  ; Clear AH, div cl uses AX as dividend
     mov cl, 0x0F                ; Set CL to 15 for FizzBuzz
     div cl                      ; AL = AL / CL, remainder in AH
-    test ah, ah                ; Check if remainder is 0
+    ; if i % 15 == 0, print FizzBuzz then jump to end_of_loop
+    test ah, ah                 ; Check if remainder is 0
     jz print_fizzbuzz           ; If remainder is 0, print FizzBuzz
     mov al, bl                  ; Copy BL to AL for division
     xor ah, ah                  ; Clear AH, div cl uses AX as dividend
     mov cl, 0x03                ; Set CL to 3 for Fizz
     div cl                      ; AL = AL / CL, remainder in AH
-    test ah, ah                ; Check if remainder is 0
+    ; if i % 3 == 0, print Fizz then jump to end_of_loop
+    test ah, ah                 ; Check if remainder is 0
     jz print_fizz               ; If remainder is 0, print Fizz
     mov al, bl                  ; Copy BL to AL for division
     xor ah, ah                  ; Clear AH, div cl uses AX as dividend
     mov cl, 0x05                ; Set CL to 5 for Buzz
     div cl                      ; AL = AL / CL, remainder in AH
+    ; if i % 5 == 0, print Buzz then jump to end_of_loop
     test ah, ah                 ; Check if remainder is 0
     jz print_buzz               ; If remainder is 0, print Buzz
     ; Print the number
