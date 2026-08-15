@@ -3,7 +3,7 @@
 ;
 
 ; Include 8086 libary
-%include "../lib/library.asm"
+%include "../lib/io.asm"
 
 org 0x0100
 board:      equ 0x0300      ; Board is stored at memory location 0x0300
@@ -45,7 +45,7 @@ get_movement:
     mov al, [bx]
     cmp al, '@'             ; numbers should be smaller than '@'. 'X' or 'O' is larger
     jnc get_movement
-    call new_line
+    call print_new_line
     ret
 
 end:                        ; Ends the program execution
@@ -66,34 +66,34 @@ show_board:
 show_row:
     call show_square
     mov al, '|'
-    call display_letter
+    call print_letter
     call show_square
     mov al, '|'
-    call display_letter
+    call print_letter
     call show_square
-    call new_line
+    call print_new_line
     ret
 
 ; Displays a divider
 show_div:
     mov al, '-'
-    call display_letter
+    call print_letter
     mov al, '+'
-    call display_letter
+    call print_letter
     mov al, '-'
-    call display_letter
+    call print_letter
     mov al, '+'
-    call display_letter
+    call print_letter
     mov al, '-'
-    call display_letter
-    call new_line
+    call print_letter
+    call print_new_line
     ret
 
 ; Displays a single square
 show_square:
     mov al, [bx]
     inc bx
-    call display_letter
+    call print_letter
     ret
 
 ; Looks for a win condition
@@ -146,9 +146,9 @@ check_diagonal2:
 end_check:
     ret
 won:                        ; at this point, AL contains the letter which made the line    
-    call display_letter
+    call print_letter
     mov bx, message
-    call display_string
+    call print_string
     int 0x20                ; exit to command line
 
 message:                    ; message that is displayed when a player has won the game

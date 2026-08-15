@@ -2,7 +2,7 @@
 ; mul.asm
 ;
 ; Include 8086 libary
-%include "../lib/library.asm"
+%include "../lib/io.asm"
 
 org 0x100
 start:
@@ -10,6 +10,6 @@ start:
     mov cl ,0x02                ; CL = 2 
     mul cl                      ; AL = AL * CL
     add al, 0x30                ; Conversion to ASCII
-    call display_letter
+    call print_letter
     int 0x20                    ; exit
 

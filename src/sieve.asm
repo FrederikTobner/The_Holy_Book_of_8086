@@ -3,7 +3,7 @@
 ;
 
 ; Include 8086 libary
-%include "../lib/library.asm"   
+%include "../lib/io.asm"   
 
 org 0x100
 
@@ -24,9 +24,9 @@ p2:
     cmp byte [bx], 0            ; Is it a prime number?
     jne p3                      ; If not jump tp p3
     push ax                     ; Pushes the value stored in AX on the stack
-    call display_number         ; Displays the number
+    call print_number         ; Displays the number
     mov al, 0x2c                ; Store ASCII code for ',' in al
-    call display_letter         ; Display ','
+    call print_letter         ; Display ','
     pop ax                      ; Restore register content
     mov bx, table               ; Store table adress in Register BX 
 p4: 

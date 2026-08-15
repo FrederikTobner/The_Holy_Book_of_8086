@@ -3,7 +3,7 @@
 ;
 
 ; Include 8086 library
-%include "../lib/library.asm"
+%include "../lib/io.asm"
 
 org 0x100                       ; Starting point of the com (command) file
 start:
@@ -33,9 +33,9 @@ loop:
     ; Print the number
     mov al, bl                  ; Copy BL to AL for printing
     xor ah, ah                  ; Clear AH, div cl uses AX as dividend
-    call display_number
+    call print_number
 end_of_loop:
-    call new_line; Display a new line
+    call print_new_line; Display a new line
     ; i++
     inc bl
     jmp loop
@@ -43,23 +43,23 @@ end_of_loop:
 print_fizzbuzz:
     push bx
     mov bx, f_con              ; Load the address of the string "Fizz" into the register
-    call display_string
+    call print_string
     mov bx, b_con              ; Load the address of the string "Buzz" into the register
-    call display_string
+    call print_string
     pop bx 
     jmp end_of_loop
 
 print_fizz:
     push bx
     mov bx, f_con              ; Load the address of the string "Fizz" into the register
-    call display_string
+    call print_string
     pop bx
     jmp end_of_loop
 
 print_buzz:
     push bx
     mov bx, b_con              ; Load the address of the string "Buzz" into the
-    call display_string 
+    call print_string 
     pop bx
     jmp end_of_loop
 

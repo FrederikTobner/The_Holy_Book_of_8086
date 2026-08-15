@@ -1,8 +1,10 @@
-; 8086 subroutine´libray
+; 8086 I/O library
 
-; Display letter subroutine
-; Displays the charater contained in AL
-display_letter:
+; This library provides basic I/O functions for the 8086 assembly language. 
+; It includes subroutines for printing letters, numbers, strings, reading keys, and changing display modes.
+
+; Subroutine to print a single letter stored in AL
+print_letter:
     ; Store register contents
     push ax
     push bx 
@@ -25,7 +27,7 @@ display_letter:
 
     ret                 ; Return from subroutine
 
-; Read key subroutine
+; Sobroutine to read a single key press and return the ASCII code in AL
 read_key:
     ; Store register contents
     push bx 
@@ -46,47 +48,41 @@ read_key:
 
     ret                 ; Return from subroutine
 
-; Display Number subroutine
-display_number:
+; Sobroutine to print a number stored in AX
+print_number:
     mov dx, 0
     mov cx, 10
     div cx
     push dx
     cmp ax, 0
-    je display_single_digit
-    call display_number
-display_single_digit:
+    je print_single_digit
+    call print_number
+print_single_digit:
     pop ax
     add al, '0'
-    call display_letter
+    call print_letter
     ret
 
-; Display Newline soubroutine
-new_line:
+; Sobroutine to print a new line
+print_new_line:
     push ax
     mov al, 0x0a
-    call display_letter
+    call print_letter
     mov al, 0x0d
-    call display_letter
+    call print_letter
     pop ax
     ret
 
-; Change display mode subroutine
-change_display_mode:
-    mov ax, 0x0003
-    int 0x10
-    ret
-
-; Display string subroutine
-display_string:
+; Subroutine to print a string stored at the address in BX
+print_string:
     mov al, [bx]
     test al, al            ; test if al is zero
-    jz return_from_display_string
+    jz return_from_print_string
     push bx
-    call display_letter
+    call print_letter
     pop bx
     inc bx
-    jmp display_string
-return_from_display_string:
+    jmp print_string
+return_from_print_string:
     ret
     
