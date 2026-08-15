@@ -15,6 +15,7 @@ Configure and build all programs (works on Windows, Linux and macOS):
 ```
 cmake -B build  -G Ninja
 cmake --build build
+```
 
 The assembled `.com`/`.lst` files are written to `build/bin`. A single program can be built on its own, e.g. `cmake --build --preset ninja --target fizzbuzz`.
 
