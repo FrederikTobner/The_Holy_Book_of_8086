@@ -12,19 +12,19 @@ loop:
     xor ah, ah                  ; Clear AH, div cl uses AX as dividend
     mov cl, 0x0F                ; Set CL to 15 for FizzBuzz
     div cl                      ; AL = AL / CL, remainder in AH
-    cmp ah, 0x00                ; Check if remainder is 0
+    test ah, ah                ; Check if remainder is 0
     je print_fizzbuzz           ; If remainder is 0, print FizzBuzz
     mov al, bl                  ; Copy BL to AL for division
     xor ah, ah                  ; Clear AH, div cl uses AX as dividend
     mov cl, 0x03                ; Set CL to 3 for Fizz
     div cl                      ; AL = AL / CL, remainder in AH
-    cmp ah, 0x00                ; Check if remainder is 0
+    test ah, ah                ; Check if remainder is 0
     je print_fizz               ; If remainder is 0, print Fizz
     mov al, bl                  ; Copy BL to AL for division
     xor ah, ah                  ; Clear AH, div cl uses AX as dividend
     mov cl, 0x05                ; Set CL to 5 for Buzz
     div cl                      ; AL = AL / CL, remainder in AH
-    cmp ah, 0x00                ; Check if remainder is 0
+    test ah, ah                ; Check if remainder is 0
     je print_buzz               ; If remainder is 0, print Buzz
     ; Print the number
     mov al, bl                  ; Copy BL to AL for printing
