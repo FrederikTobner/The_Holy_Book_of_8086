@@ -58,13 +58,15 @@ print_fizz:
 
 print_buzz:
     push bx
-    mov bx, b_con              ; Load the address of the string "Buzz" into the
+    mov bx, b_con              ; Load the address of the string "Buzz" into the register
     call print_string 
     pop bx
     jmp end_of_loop
 
 end:
     int 0x20                    ; Exit to command line
+
+; Constants
 f_con:
     db "Fizz", 0x0      ; Null terminated "Fizz" constant
 b_con:
