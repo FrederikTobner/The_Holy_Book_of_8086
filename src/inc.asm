@@ -1,6 +1,9 @@
 ;
 ; inc.asm
 ;
+
+%include "../lib/library.asm"
+
 org 0x100
 start:
     mov al, 0x30
@@ -16,5 +19,3 @@ count_down:
     jne count_down
 
     int 0x20                    ; exit
-
-%include "../src/library.asm"

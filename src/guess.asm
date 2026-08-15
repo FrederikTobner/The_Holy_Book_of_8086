@@ -1,6 +1,8 @@
 ;
 ; guess.asm
 ;
+; Include 8086 libary
+%include "../lib/library.asm"
 org 0x100
 start:
     in al, (0x40)               ; Read the timer counter chip
@@ -21,6 +23,3 @@ game_loop:
     call display_letter
 
     int 0x20                    ; exit
-
-; Include 8086 libary
-%include "../src/library.asm"

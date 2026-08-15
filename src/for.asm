@@ -1,6 +1,8 @@
 ;
 ; Incredible For loop program
 ;
+; Include 8086 library
+%include "../lib/library.asm"
 org 0x100                       ; Starting point of the com (command) file
 start:
     mov ax, 0x01
@@ -18,6 +20,3 @@ loop:
 
 end:
     int 0x20                    ; Exit to command line
-
-; Include 8086 library
-%include "../src/library.asm"

@@ -1,6 +1,10 @@
 ;
 ; sieve.asm
 ;
+
+; Include 8086 libary
+%include "../lib/library.asm"   
+
 org 0x100
 
 table equ 0x8000
@@ -37,6 +41,3 @@ p3:
     jne p2                      ; If they are not equal jump to p2
 
     int 0x20                    ; exit
-
-; Include 8086 libary
-%include "../src/library.asm"   

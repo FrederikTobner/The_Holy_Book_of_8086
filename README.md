@@ -5,15 +5,28 @@ More information about the 8086 architecture can be found at the [wiki](https://
 
 ## Setup
 
-Install [NASM](https://nasm.us/), and [DOS-BOX](https://www.dosbox.com/).
+Install [NASM](https://nasm.us/), [CMake](https://cmake.org/), [Ninja](https://ninja-build.org/) and [DOS-BOX](https://www.dosbox.com/).
 
 ### Building
 
-Builds the exectable
+Configure and build all programs (works on Windows, Linux and macOS):
 
 ```
-nasm -f bin <Assemblyfile> -o <Outputfile>
+cmake --preset ninja
+cmake --build --preset ninja
 ```
+
+The assembled `.com`/`.lst` files are written to `build/bin`. A single program can be built on its own, e.g. `cmake --build --preset ninja --target fizzbuzz`.
+
+### Moving the programs to a DOSBox folder
+
+The `move` target copies every assembled `.com` file into `DOSBOX_MOUNT_DIR` (defaults to `build/dosbox`):
+
+```
+cmake --build --preset ninja --target move
+```
+
+Set a custom destination by configuring with `-DDOSBOX_MOUNT_DIR=<folder>`.
 
 ### Executing a program
 

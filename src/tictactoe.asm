@@ -1,10 +1,12 @@
 ;
 ; tictactoe.asm
 ;
+
+; Include 8086 libary
+%include "../lib/library.asm"
+
 org 0x0100
-
 board:      equ 0x0300      ; Board is stored at memory location 0x0300
-
 start:
     mov bx, board           ; Stores the memory adress where the board is located in the register bx
     mov cx, 9               ; Count 9 squares
@@ -151,6 +153,3 @@ won:                        ; at this point, AL contains the letter which made t
 
 message:                    ; message that is displayed when a player has won the game
     db " won!", 0
-
-; Include 8086 libary
-%include "../src/library.asm"

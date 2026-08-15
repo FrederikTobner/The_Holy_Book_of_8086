@@ -1,5 +1,5 @@
 ;
-; hello.asm
+; Incredible Hello program printing "Hello" using different colors
 ;
 org 0x0100
 start:

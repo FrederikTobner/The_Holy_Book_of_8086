@@ -1,6 +1,8 @@
 ;
 ; div.asm
 ;
+; Include 8086 libary
+%include "../lib/library.asm"
 org 0x100
 start:
     mov al, 0x64                ; AL = 100
@@ -9,6 +11,3 @@ start:
     add al, 0x30                ; Conversion to ASCII
     call display_letter
     int 0x20                    ; exit
-
-; Include 8086 libary
-%include "../src/library.asm"

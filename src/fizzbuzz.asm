@@ -1,6 +1,10 @@
 ;
 ; Incredible FizzBuzz program
 ;
+
+; Include 8086 library
+%include "../lib/library.asm"
+
 org 0x100                       ; Starting point of the com (command) file
 start:
     mov bl, 0x01
@@ -42,7 +46,7 @@ print_fizzbuzz:
     call display_string
     mov bx, b_con              ; Load the address of the string "Buzz" into the register
     call display_string
-    pop bx
+    pop bx 
     jmp end_of_loop
 
 print_fizz:
@@ -65,6 +69,3 @@ f_con:
     db "Fizz", 0x0      ; Null terminated "Fizz" constant
 b_con:
     db "Buzz", 0x0      ; Null terminated "Buzz" constant
-
-; Include 8086 library
-%include "../src/library.asm"
