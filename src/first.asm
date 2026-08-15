@@ -5,7 +5,7 @@ org 0x100                       ; Starting point of the com (command) file
 start:
     mov bx, string              ; Load the address of the string "Hello, world" into the register
 repeat:
-    mov al, [bx]                ; Load a single byte intp the register al from the adress stroed in bx
+    mov al, [bx]                ; Load a single byte into the register al from the address stroed in bx
     test al, al                 ; Test AL for zero
     je end                      ; jump if equal to end (jumps if al is zero)
     push bx                     ; Pushes the content stored in register bx onto the stack
